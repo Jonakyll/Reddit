@@ -1,0 +1,62 @@
+.link {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.bg-cyan {
+    background-color: #f1f1f1;
+
+}
+
+#card {
+
+    background-color : white;
+    width: 100%;
+    font-size: smaller;
+}
+
+#content-box {
+    height: 5rem;
+}
+
+@media only screen and (min-width : 768px) {
+    #card {
+
+        background-color : white;
+        width: 50%;
+        font-size: medium;
+    }
+}
+
+@media only screen and (min-width : 992px) {
+    #card {
+
+        background-color : white;
+        width: 50%;
+        font-size: larger;
+    }
+}
+
+@media only screen and (min-width : 1200px) {
+/* Styles */
+    #card {
+
+        background-color : white;
+        width: 50%;
+        font-size: larger;
+    }
+}
+
+/* Large screens ----------- */
+@media only screen and (min-width : 1400px) {
+/* Styles */
+    #card {
+
+        background-color : white;
+        width: 50%;
+        font-size: larger;
+    }
+}

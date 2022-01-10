@@ -1,0 +1,33 @@
+/*
+body,
+html {
+    height: 100%;
+}
+
+#particles-js canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background: #659DBD;
+    background-size: cover;
+}
+*/
+
+.bg {
+    height : 100%;
+    background: #659DBD;
+}
+
+#particles-js canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background: #659DBD;
+    background-size: cover;
+}

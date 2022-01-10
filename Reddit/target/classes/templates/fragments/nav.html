@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <meta http-equiv="Content-Type" content="width=device-width, initial-scale=1; text/html; charset=UTF-8"
+          name="viewport"/>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+<!-- Optional JavaScript; choose one of the two! -->
+
+
+<div th:fragment="topnav">
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="/css/nav.css" th:href="@{/css/nav.css}">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top mb-3">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="/images/logo.png" width="45" class="image-fluid d-inline-block align-middle mr-2" alt="Reddit">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 px-4">
+                    <li sec:authorize="isAuthenticated()" class="nav-item">
+                        <a href="/topics/addTopic" type="submit" class="btn btn-default">
+                            <i class="bi bi-pen-fill"></i>
+                        </a>
+                    </li>
+
+                    <li sec:authorize="isAuthenticated()" class="nav-item">
+                        <form th:action="@{/doLogout}" method="post">
+                            <button class="btn btn-default lock" type="submit">
+
+                                <i class="bi bi-door-closed-fill icon-lock"></i>
+
+                                <i class="bi bi-door-open-fill icon-unlock"></i>
+
+                            </button>
+                        </form>
+                    </li>
+
+                    <li sec:authorize="!isAuthenticated()" class="nav-item">
+                        <a class="nav-link btn btn-outline-secondary mx-2 mb-2 px-5 rounded-pill text-capitalize text-decoration-none" role="button" type="submit" href="/users/login">
+                            Log In
+                        </a>
+                    </li>
+                    <li sec:authorize="!isAuthenticated()" class="nav-item">
+                        <a class="nav-link btn mx-2 px-5 mb-2 rounded-pill text-capitalize text-decoration-none sign" role="button" type="submit" href="/users/signUp">
+                            Sign Up
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item dropdown me-auto">
+                        <a class="nav-link dropdown-toggle mx-2 text-decoration-none" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="bi bi-gear-fill"></i>
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <div sec:authorize="hasAuthority('ADMIN')">
+                                <li><a class="dropdown-item" href="/users/all">Users</a></li>
+                                <li><a class="dropdown-item" href="/comments/all">Comments</a></li>
+                            </div>
+                            <div sec:authorize="isAuthenticated()">
+                                <li><a class="dropdown-item" href="/users/profile">Profile</a></li>
+                            </div>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+</body>
+
+</html>
+

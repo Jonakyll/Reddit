@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--
+<div th:fragment="listOfComments">
+    <ul class="list-group list-group-horizontal" th:each="c : ${#session.getAttribute('comments')}">
+
+        <li class="list-group-item" th:text="${c.content}">
+
+        </li>
+
+        <li class="list-group-item">
+            <form th:action="@{/comments/allFromComment/{commentId} (commentId = ${c.id}, url='/'+${mytopic.id})}" method="get">
+                <button href="#" class="mt-auto btn border-pill">
+                    <i class="bi bi-chat-square-dots"></i>
+                    <small class="text-muted text-capitalize" th:inline="text"> [[${c.answers.size()}]] comments</small>
+                </button>
+            </form>
+        </li>
+
+        <li class="list-group-item">
+            <form sec:authorize="isAuthenticated()" id="delete"
+                  th:action="@{/comments/deletedComment/{topicId}/{commentId} (topicId = ${topicId}, commentId = ${c.id})}"
+                  th:object="${topicId}" method="post">
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <input type="submit" value="DELETE"/>
+                </div>
+            </form>
+        </li>
+
+    </ul>
+
+    <form sec:authorize="isAuthenticated()" th:action="@{/comments/addedSubComment/{commentId} (commentId = ${c.id}, url='/'+${mytopic.id})}"
+          th:object="${comment}" method="POST">
+
+        <label for="content">Comment:</label>
+        <input textarea th:field="*{content}" id="content"/>
+        <br/>
+
+        <input type="submit" value="Submit"/>
+
+    </form>
+</div>
+
+<div th:fragment="commentTopicView">
+    <div th:include="~{fragments/commentTopicView.html :: listOfComments}"></div>
+</div>
+-->
+
+<div th:fragment="listComments(cs)">
+    <ul class="my-1" th:each="c : ${cs}">
+
+        <li class="card card-body d-flex flex-column">
+            <div class="d-flex w-100 justify-content-between">
+                <small class="text-justify" th:inline="text">
+                    Posted by
+                    <a th:href="@{/users/profile/{id}(id = ${c.author.id})}" class="text-decoration-none"> @[[${c.author.name}]] </a>
+                    the [[${c.dateFormat}]]
+                </small>
+
+                <div sec:authorize="isAuthenticated()" th:if="${#authentication.principal.getUser().id == c.author.id}">
+                    <form id="delete"
+                          th:action="@{/comments/deletedComment/{topicId}/{commentId} (topicId = ${mytopic.id}, commentId = ${c.id}, url='/'+${mytopic.id})}"
+                          method="post">
+
+                        <button class="btn" type="submit" value="DELETE">
+                            <i class="bi bi-trash2-fill"></i>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+            <p class="my-2" th:text="${c.content}"></p>
+
+            <div class="d-flex flex-row">
+                <div th:replace="~{/fragments/votes.html :: voteComment(comment=${c}, pageUrl='/'+${mytopic.id})}"></div>
+
+                <form th:action="@{/comments/allFromTopic/{topicId}/{commentId} (topicId=${mytopic.id}, commentId = ${c.id}, url='/'+${mytopic.id})}" method="get">
+                    <button href="#" class="mt-auto btn border-pill" type="submit">
+                        <i class="bi bi-bar-chart-steps"></i>
+                        <small class="text-muted text-capitalize" th:text="${T(fr.uge.jee.reddit.models.Comment).numberComments(c)}"></small>
+                    </button>
+                </form>
+
+                <button sec:authorize="isAuthenticated()" class="btn" type="button" data-bs-toggle="collapse" th:attr="data-bs-target='#collapseComments'+${c.id}" data-bs-target="#collapseComments" aria-expanded="false" aria-controls="collapseComments">
+                    <i class="bi bi-plus-square-fill"></i>
+                </button>
+            </div>
+
+
+            <div sec:authorize="isAuthenticated()" class="collapse mt-2" id="#collapseComments" th:id="'collapseComments'+${c.id}">
+                <form th:action="@{/comments/addedSubComment/{commentId} (commentId = ${c.id}, url='/'+${mytopic.id})}"
+                      th:object="${comment}" method="POST">
+
+                    <div class="d-flex flex-row">
+                        <input class="form-control form-control-sm" textarea th:field="*{content}"/>
+
+                        <button class="btn" type="submit" value="Submit">
+                            <i class="bi bi-cursor-fill"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </li>
+
+        <div th:if="${#request.getAttribute('commentId'+c.id) != null}" th:include="~{fragments/commentTopicView.html :: listComments(cs = ${#request.getAttribute('commentId'+c.id)})}"></div>
+
+    </ul>
+</div>
+
+
+
+<div th:fragment="commentTopicView">
+    <div th:include="~{fragments/commentTopicView.html :: listComments(cs = ${comments})}"></div>
+</div>
+
+
+</body>
+</html>

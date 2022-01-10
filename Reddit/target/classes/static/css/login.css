@@ -1,0 +1,11 @@
+.card {
+    width : 22rem;
+}
+
+.card-header {
+    background-color : #CAFAFE
+}
+
+.bi.bi-file-person {
+    color : black;
+}

@@ -1,0 +1,30 @@
+.card-notify-year {
+	position: absolute;
+	right: 1rem;
+	text-align: center;
+}
+
+.bg-cyan {
+    background-color : #5680E9;
+}
+
+#card {
+    background-color : #84CEEB;
+}
+
+.votes-icon {
+    position: relative;
+}
+
+.bi.bi-hand-thumbs-up-fill {
+    position: absolute;
+    top: 2rem;
+    left: 15%;
+}
+
+.bi.bi-hand-thumbs-down-fill {
+   position: absolute;
+   bottom: 2rem;
+   left: 15%;
+}
+

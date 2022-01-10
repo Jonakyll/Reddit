@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<h3>Welcome, Enter Comment</h3>
+
+    <form th:action="@{/comments/addedComment}" th:object="${comment}" method="POST">
+
+        <label for="content">Content:</label>
+        <input textarea th:field="*{content}" id="content"/>
+        <br/>
+
+        <input type="submit" value="Submit" />
+
+    </form>
+
+</body>
+</html>

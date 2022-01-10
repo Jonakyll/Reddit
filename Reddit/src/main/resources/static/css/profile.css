@@ -1,0 +1,32 @@
+.bi.bi-person-circle {
+    font-size: 8rem;
+    color : #f1f1f1;
+}
+
+.list-group-item:hover {
+  box-shadow: 0 0 11px #000;
+}
+
+.link {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+@media only screen and (min-width : 768px) {
+
+}
+
+@media only screen and (min-width : 992px) {
+
+}
+
+@media only screen and (min-width : 1200px) {
+
+}
+
+/* Large screens ----------- */
+@media only screen and (min-width : 1400px) {
+}

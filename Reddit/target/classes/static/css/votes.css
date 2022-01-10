@@ -1,0 +1,15 @@
+.upvote-color {
+    color: #FF3D00;
+}
+
+.downvote-color {
+    color: blue;
+}
+
+.bi.bi-hand-thumbs-up-fill:hover {
+	color: #FF3D00;
+}
+
+.bi.bi-hand-thumbs-down-fill:hover {
+	color: blue;
+}

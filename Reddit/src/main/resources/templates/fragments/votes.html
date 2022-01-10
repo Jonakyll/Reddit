@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form th:fragment="upVoteNoColorTopic(topic, myurl)" th:action="@{/{idTopic}/upVoteTopic(idTopic=${topic.id}, url = ${myurl})}" method="post">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="/css/nav.css" th:href="@{/css/votes.css}">
+
+    <button type="submit" class="btn btn-default">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+        <i class="bi bi-hand-thumbs-up-fill">
+            <small th:text="${topic.upvotes.size()}"></small>
+        </i>
+    </button>
+</form>
+
+<!-- Upvote Color-->
+<form th:fragment="upVoteColorTopic(topic, myurl)" th:action="@{/{idTopic}/upVoteTopic(idTopic=${topic.id}, url = ${myurl})}" method="post">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="/css/nav.css" th:href="@{/css/votes.css}">
+
+    <button type="submit" class="btn btn-default">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+        <i class="bi bi-hand-thumbs-up-fill upvote-color">
+            <small th:text="${topic.upvotes.size()}"></small>
+        </i>
+    </button>
+</form>
+
+<form th:fragment="downVoteNoColorTopic(topic, myurl)" th:action="@{/{idTopic}/downVoteTopic(idTopic=${topic.id}, url = ${myurl})}" method="post">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="/css/nav.css" th:href="@{/css/votes.css}">
+
+    <button type="submit" class="btn btn-default">
+        <i class="bi bi-hand-thumbs-down-fill">
+            <small th:text="${topic.downvotes.size()}"></small>
+        </i>
+    </button>
+</form>
+
+<!-- downvote Color -->
+<form th:fragment="downVoteColorTopic(topic, myurl)" th:action="@{/{idTopic}/downVoteTopic(idTopic=${topic.id}, url = ${myurl})}" method="post">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="/css/nav.css" th:href="@{/css/votes.css}">
+
+    <button type="submit" class="btn btn-default">
+        <i class="bi bi-hand-thumbs-down-fill downvote-color">
+            <small th:text="${topic.downvotes.size()}"></small>
+        </i>
+    </button>
+</form>
+
+<div th:fragment="vote(topic, pageUrl)">
+    <div sec:authorize="!isAuthenticated()" class="d-flex flex-row">
+        <form th:replace="~{/fragments/votes.html :: upVoteNoColorTopic(topic=${topic}, myurl=${pageUrl})}"></form>
+        <form th:replace="~{/fragments/votes.html :: downVoteNoColorTopic(topic=${topic}, myurl=${pageUrl})}"></form>
+    </div>
+
+    <div sec:authorize="isAuthenticated()" class="d-flex flex-row" th:with="currentUser=${#authentication.getPrincipal().getUser()}">
+        <form th:replace="${topic.upvotes.contains(currentUser)} ?
+                          ~{/fragments/votes.html :: upVoteColorTopic(topic=${topic}, myurl=${pageUrl})} :
+                          ~{/fragments/votes.html :: upVoteNoColorTopic(topic=${topic}, myurl=${pageUrl})}">
+        </form>
+        <form th:replace="${topic.downvotes.contains(currentUser)} ?
+                           ~{/fragments/votes.html :: downVoteColorTopic(topic=${topic}, myurl=${pageUrl})} :
+                           ~{/fragments/votes.html :: downVoteNoColorTopic(topic=${topic}, myurl=${pageUrl})}">
+        </form>
+    </div>
+</div>
+
+<!---------------------------------------------------
+-----------------------------------------------------
+-----------------------------------------------------
+                Vote Comments
+-----------------------------------------------------
+-----------------------------------------------------
+----------------------------------------------------->
+
+<form th:fragment="upVoteNoColorComment(comment, myurl)" th:action="@{/{idComment}/upVoteComment(idComment=${comment.id}, url = ${myurl})}" method="post">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="/css/nav.css" th:href="@{/css/votes.css}">
+
+    <button type="submit" class="btn btn-default">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+        <i class="bi bi-hand-thumbs-up-fill">
+            <small th:text="${comment.upvotes.size()}"></small>
+        </i>
+    </button>
+</form>
+
+<!-- Upvote Color-->
+<form th:fragment="upVoteColorComment(comment, myurl)" th:action="@{/{idComment}/upVoteComment(idComment=${comment.id}, url = ${myurl})}" method="post">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="/css/nav.css" th:href="@{/css/votes.css}">
+
+    <button type="submit" class="btn btn-default">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+        <i class="bi bi-hand-thumbs-up-fill upvote-color">
+            <small th:text="${comment.upvotes.size()}"></small>
+        </i>
+    </button>
+</form>
+
+<form th:fragment="downVoteNoColorComment(comment, myurl)" th:action="@{/{idComment}/downVoteComment(idComment=${comment.id}, url = ${myurl})}" method="post">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="/css/nav.css" th:href="@{/css/votes.css}">
+
+    <button type="submit" class="btn btn-default">
+        <i class="bi bi-hand-thumbs-down-fill">
+            <small th:text="${comment.downvotes.size()}"></small>
+        </i>
+    </button>
+</form>
+
+<!-- downvote Color -->
+<form th:fragment="downVoteColorComment(comment, myurl)" th:action="@{/{idComment}/downVoteComment(idComment=${comment.id}, url = ${myurl})}" method="post">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="/css/nav.css" th:href="@{/css/votes.css}">
+
+    <button type="submit" class="btn btn-default">
+        <i class="bi bi-hand-thumbs-down-fill downvote-color">
+            <small th:text="${comment.downvotes.size()}"></small>
+        </i>
+    </button>
+</form>
+
+<div th:fragment="voteComment(comment, pageUrl)">
+    <div sec:authorize="!isAuthenticated()" class="d-flex flex-row">
+        <form th:replace="~{/fragments/votes.html :: upVoteNoColorComment(comment=${comment}, myurl=${pageUrl})}"></form>
+        <form th:replace="~{/fragments/votes.html :: downVoteNoColorComment(comment=${comment}, myurl=${pageUrl})}"></form>
+    </div>
+
+    <div sec:authorize="isAuthenticated()" class="d-flex flex-row" th:with="currentUser=${#authentication.getPrincipal().getUser()}">
+        <form th:replace="${comment.upvotes.contains(currentUser)} ?
+                          ~{/fragments/votes.html :: upVoteColorComment(comment=${comment}, myurl=${pageUrl})} :
+                          ~{/fragments/votes.html :: upVoteNoColorComment(comment=${comment}, myurl=${pageUrl})}">
+        </form>
+        <form th:replace="${comment.downvotes.contains(currentUser)} ?
+                           ~{/fragments/votes.html :: downVoteColorComment(comment=${comment}, myurl=${pageUrl})} :
+                           ~{/fragments/votes.html :: downVoteNoColorComment(comment=${comment}, myurl=${pageUrl})}">
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+.card {
+    width : 22rem;
+}
+
+.card-body {
+    background-color: white;
+}
+
+.card-header {
+    background-color: #f1f1f1;
+}
+
+.bi.bi-file-person {
+    color : black;
+}
+
+@media only screen and (min-width : 768px) {
+
+}
+
+@media only screen and (min-width : 992px) {
+
+}
+
+@media only screen and (min-width : 1200px) {
+
+}
+
+/* Large screens ----------- */
+@media only screen and (min-width : 1400px) {
+}

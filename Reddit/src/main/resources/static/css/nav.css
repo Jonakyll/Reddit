@@ -1,0 +1,22 @@
+.bi.bi-gear-fill {
+    font-size: 1rem;
+}
+
+.lock:hover .icon-lock,
+.lock .icon-unlock {
+    display: none;
+}
+.lock:hover .icon-unlock {
+    display: inline;
+}
+
+
+.btn.sign {
+    background-color: #659DBD;
+}
+
+.nav-item {
+    margin-left: auto;
+    margin-right: auto;
+}
+

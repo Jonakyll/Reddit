@@ -1,0 +1,28 @@
+2021-03-22 14:12:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valeur trop longue pour la colonne "CONTENT VARCHAR(255)": "'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat tincidunt ligula, et porta metus. Sed sit amet lobort... (15023)"
+Value too long for column "CONTENT VARCHAR(255)": "'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat tincidunt ligula, et porta metus. Sed sit amet lobort... (15023)"; SQL statement:
+insert into comments (id, author_id, content, date, parent_id, value) values (null, ?, ?, ?, ?, ?) [22001-200]
+2021-03-22 14:13:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valeur trop longue pour la colonne "CONTENT VARCHAR(255)": "'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat tincidunt ligula, et porta metus. Sed sit amet lobort... (2671)"
+Value too long for column "CONTENT VARCHAR(255)": "'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat tincidunt ligula, et porta metus. Sed sit amet lobort... (2671)"; SQL statement:
+insert into comments (id, author_id, content, date, parent_id, value) values (null, ?, ?, ?, ?, ?) [22001-200]
+2021-03-22 14:13:34 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLDataException: Valeur trop longue pour la colonne "CONTENT VARCHAR(255)": "'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat tincidunt ligula, et porta metus. Sed sit amet lobort... (1864)"
+Value too long for column "CONTENT VARCHAR(255)": "'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat tincidunt ligula, et porta metus. Sed sit amet lobort... (1864)"; SQL statement:
+insert into comments (id, author_id, content, date, parent_id, value) values (null, ?, ?, ?, ?, ?) [22001-200]
+2021-03-22 14:13:42 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valeur trop longue pour la colonne "CONTENT VARCHAR(255)": "'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat tincidunt ligula, et porta metus. Sed sit amet lobort... (1299)"
+Value too long for column "CONTENT VARCHAR(255)": "'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat tincidunt ligula, et porta metus. Sed sit amet lobort... (1299)"; SQL statement:
+insert into comments (id, author_id, content, date, parent_id, value) values (null, ?, ?, ?, ?, ?) [22001-200]
+2021-03-22 14:13:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valeur trop longue pour la colonne "CONTENT VARCHAR(255)": "'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat tincidunt ligula, et porta metus. Sed sit amet lobort... (886)"
+Value too long for column "CONTENT VARCHAR(255)": "'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat tincidunt ligula, et porta metus. Sed sit amet lobort... (886)"; SQL statement:
+insert into comments (id, author_id, content, date, parent_id, value) values (null, ?, ?, ?, ?, ?) [22001-200]
+2021-03-22 14:14:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valeur trop longue pour la colonne "CONTENT VARCHAR(255)": "'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat tincidunt ligula, et porta metus. Sed sit amet lobort... (476)"
+Value too long for column "CONTENT VARCHAR(255)": "'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat tincidunt ligula, et porta metus. Sed sit amet lobort... (476)"; SQL statement:
+insert into comments (id, author_id, content, date, parent_id, value) values (null, ?, ?, ?, ?, ?) [22001-200]
+2021-03-22 14:14:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valeur trop longue pour la colonne "CONTENT VARCHAR(255)": "'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat tincidunt ligula, et porta metus. Sed sit amet lobort... (338)"
+Value too long for column "CONTENT VARCHAR(255)": "'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat tincidunt ligula, et porta metus. Sed sit amet lobort... (338)"; SQL statement:
+insert into comments (id, author_id, content, date, parent_id, value) values (null, ?, ?, ?, ?, ?) [22001-200]

@@ -1,0 +1,11 @@
+.card {
+    width : 22rem;
+}
+
+.card-header {
+    background-color : #CAFAFE
+}
+
+.bi.bi-key-fill {
+    color : black;
+}

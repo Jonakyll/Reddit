@@ -1,0 +1,86 @@
+#bg-card {
+    background-color: #f1f1f1;
+}
+
+#content-text {
+   font-size: smaller;
+}
+
+.zone-dim {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card-subtitle {
+    font-size: x-small;
+}
+
+@media only screen and (min-width : 768px) {
+    #content-text {
+        font-size: medium;
+    }
+
+    .card-subtitle {
+        font-size: small;
+    }
+
+    .zone-dim {
+        width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
+
+@media only screen and (min-width : 992px) {
+    #content-text {
+        font-size: medium;
+    }
+
+    .card-subtitle {
+        font-size: x-small;
+    }
+
+    .zone-dim {
+        width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
+
+@media only screen and (min-width : 1200px) {
+    #content-text {
+        font-size: larger;
+    }
+
+    .card-subtitle {
+        font-size: medium;
+    }
+
+    .zone-dim {
+        width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
+
+/* Large screens ----------- */
+@media only screen and (min-width : 1400px) {
+    #content-text {
+        font-size: larger;
+    }
+
+    .card-subtitle {
+        font-size: medium;
+    }
+
+    .zone-dim {
+        width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
